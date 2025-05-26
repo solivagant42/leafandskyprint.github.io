@@ -4,42 +4,329 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Leaf & Skyprint</title>
-    <link rel="stylesheet" href="/assets/css/styles.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #FFFFFF; /* White background */
+            color: #000000; /* Black text */
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1em;
+        }
+        header {
+            position: relative;
+            height: 60vh;
+            background: url('https://images.unsplash.com/photo-1420593248178-d88870618ca0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background-attachment: fixed; /* Parallax effect */
+        }
+        header .overlay {
+            background: rgba(255, 255, 255, 0.8); /* White overlay */
+            padding: 2em;
+            border-radius: 10px;
+        }
+        header h1 {
+            font-size: 3em;
+            color: #000000;
+        }
+        header p {
+            font-size: 1.2em;
+            color: #000000;
+        }
+        nav {
+            background-color: #000000; /* Black navigation */
+            padding: 1em;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        nav a {
+            color: #FFFFFF; /* White links */
+            margin: 0 1.5em;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+        nav a:hover {
+            color: #2F4F4F; /* Dark slate gray on hover */
+        }
+        .sidebar {
+            float: left;
+            width: 25%;
+            padding: 2em;
+            background-color: #FFFFFF;
+            border-right: 1px solid #000000;
+        }
+        .sidebar h3 {
+            color: #2F4F4F; /* Dark slate gray */
+            margin-bottom: 1em;
+        }
+        .sidebar ul {
+            list-style: none;
+        }
+        .sidebar ul li {
+            margin-bottom: 0.5em;
+        }
+        .sidebar ul li a {
+            color: #000000;
+            text-decoration: none;
+        }
+        .sidebar ul li a:hover {
+            color: #2F4F4F;
+        }
+        main {
+            float: right;
+            width: 70%;
+            padding: 2em;
+        }
+        main h2, main h3 {
+            color: #2F4F4F; /* Dark slate gray */
+            margin-bottom: 1em;
+        }
+        .post-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5em;
+            margin-bottom: 2em;
+        }
+        .post-card {
+            background-color: #FFFFFF;
+            border: 1px solid #000000; /* Black border */
+            padding: 1em;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+        .post-card:hover {
+            transform: translateY(-5px);
+        }
+        .post-card h4 a {
+            color: #000000;
+            text-decoration: none;
+        }
+        .post-card h4 a:hover {
+            color: #2F4F4F;
+        }
+        .post-card .date {
+            color: #000000;
+            font-size: 0.9em;
+            margin-bottom: 0.5em;
+        }
+        .read-more, .archive-link {
+            display: inline-block;
+            padding: 0.5em 1em;
+            background-color: #2F4F4F; /* Dark slate gray */
+            color: #FFFFFF;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 1em;
+            transition: background-color 0.3s ease;
+        }
+        .read-more:hover, .archive-link:hover {
+            background-color: #000000;
+        }
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5em;
+            margin: 2em 0;
+        }
+        .gallery img {
+            width: 100%;
+            border-radius: 8px;
+            border: 1px solid #000000;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .gallery img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 10px rgba(47, 79, 79, 0.2);
+        }
+        .occasions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5em;
+            justify-content: center;
+            margin: 2em 0;
+        }
+        .occasion-card {
+            background-color: #FFFFFF;
+            padding: 1.5em;
+            border: 1px solid #000000;
+            border-radius: 8px;
+            width: 300px;
+            transition: transform 0.3s ease;
+        }
+        .occasion-card:hover {
+            transform: translateY(-5px);
+        }
+        .occasion-card h3 {
+            color: #2F4F4F;
+            margin-bottom: 0.5em;
+        }
+        .comment-section {
+            margin-top: 2em;
+        }
+        .comment-section h3 {
+            color: #2F4F4F;
+            margin-bottom: 1em;
+        }
+        .comment-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1em;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        .comment-form input, .comment-form textarea {
+            padding: 0.5em;
+            border: 1px solid #000000;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+        .comment-form input[type="submit"] {
+            background-color: #2F4F4F;
+            color: #FFFFFF;
+            border: none;
+            padding: 0.75em;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .comment-form input[type="submit"]:hover {
+            background-color: #000000;
+        }
+        footer {
+            clear: both;
+            background-color: #000000; /* Black footer */
+            color: #FFFFFF;
+            text-align: center;
+            padding: 1em;
+        }
+        @media (max-width: 768px) {
+            header {
+                height: 50vh;
+                background-attachment: scroll; /* Disable parallax on mobile */
+            }
+            header h1 {
+                font-size: 2em;
+            }
+            .sidebar, main {
+                float: none;
+                width: 100%;
+            }
+            .sidebar {
+                border-right: none;
+                border-bottom: 1px solid #000000;
+            }
+            .post-grid, .gallery, .occasions {
+                grid-template-columns: 1fr;
+            }
+            .occasion-card {
+                width: 100%;
+            }
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <header>
+    <header>
+        <div class="overlay">
             <h1>Leaf & Skyprint</h1>
             <p>A Digital Archive of Solitary Walks in Nature</p>
-        </header>
+        </div>
+    </header>
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#archive">Archive</a>
+        <a href="#about">About</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#occasions">Occasions</a>
+        <a href="#contact">Contact</a>
+    </nav>
+    <div class="container">
         <div class="sidebar">
-            <nav>
-                <a href="/">Home</a>
-                <a href="/archive">Archive</a>
-                <a href="/about">About</a>
-            </nav>
             <h3>Recent Walks</h3>
             <ul>
-                {% for post in site.posts limit:3 %}
-                    <li><a href="{{ post.url }}">{{ post.title }}</a></li>
-                {% endfor %}
+                <li><a href="#post1">Coastal Wander - May 2025</a></li>
+                <li><a href="#post2">Forest Trail - April 2025</a></li>
+                <li><a href="#post3">Wetland Sketches - March 2025</a></li>
             </ul>
         </div>
         <main>
             <h2>Welcome to Leaf & Skyprint</h2>
-            <p>Discover my solitary walks through beaches, forests, wetlands, and more. Each post captures observations, sketches, and reflections from nature’s diverse habitats. Share your thoughts in the comments below each post!</p>
+            <p>Discover my solitary walks through beaches, forests, wetlands, and more. Each post captures observations, sketches, and reflections from nature’s diverse habitats. Share your thoughts in the comments below!</p>
             <h3>Latest Observations</h3>
             <div class="post-grid">
-                {% for post in site.posts limit:4 %}
-                    <article class="post-card">
-                        <h4><a href="{{ post.url }}">{{ post.title }}</a></h4>
-                        <p class="date">{{ post.date | date: "%B %d, %Y" }}</p>
-                        <p>{{ post.excerpt | strip_html | truncate: 100 }}</p>
-                        <a href="{{ post.url }}" class="read-more">Read More</a>
-                    </article>
-                {% endfor %}
+                <article class="post-card">
+                    <h4><a href="#post1">Coastal Wander</a></h4>
+                    <p class="date">May 10, 2025</p>
+                    <p>Explored the rugged coastline, spotting gulls and collecting seashells under the morning mist.</p>
+                    <a href="#post1" class="read-more">Read More</a>
+                </article>
+                <article class="post-card">
+                    <h4><a href="#post2">Forest Trail</a></h4>
+                    <p class="date">April 15, 2025</p>
+                    <p>Documented native ferns and heard the call of a woodpecker deep in the forest.</p>
+                    <a href="#post2" class="read-more">Read More</a>
+                </article>
+                <article class="post-card">
+                    <h4><a href="#post3">Wetland Sketches</a></h4>
+                    <p class="date">March 20, 2025</p>
+                    <p>Sketched cattails and observed a heron in the serene wetlands at dusk.</p>
+                    <a href="#post3" class="read-more">Read More</a>
+                </article>
+                <article class="post-card">
+                    <h4><a href="#post4">Mountain Path</a></h4>
+                    <p class="date">February 5, 2025</p>
+                    <p>Hiked a mountain trail, noting wildflowers and distant eagle sightings.</p>
+                    <a href="#post4" class="read-more">Read More</a>
+                </article>
             </div>
-            <a href="/archive" class="archive-link">Explore All Walks</a>
+            <a href="#archive" class="archive-link">Explore All Walks</a>
+            <h3>Nature Gallery</h3>
+            <div class="gallery">
+                <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" alt="Forest">
+                <img src="https://images.unsplash.com/photo-1518495973544-1b3a9e4e33b0?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" alt="Wildflower">
+                <img src="https://images.unsplash.com/photo-1475809913361-9a1161b2ab2e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" alt="Bird">
+            </div>
+            <h3>Occasions</h3>
+            <div class="occasions">
+                <div class="occasion-card">
+                    <h3>Birdwatching Walk</h3>
+                    <p>Join a guided birdwatching event in the local wetlands on June 10, 2025.</p>
+                    <a href="#contact" class="read-more">Learn More</a>
+                </div>
+                <div class="occasion-card">
+                    <h3>Plant Identification Workshop</h3>
+                    <p>Discover native flora in a hands-on workshop on July 15, 2025.</p>
+                    <a href="#contact" class="read-more">Learn More</a>
+                </div>
+                <div class="occasion-card">
+                    <h3>Seasonal Nature Blog</h3>
+                    <p>Read my latest posts on seasonal changes in the forest ecosystem.</p>
+                    <a href="#archive" class="read-more">Read Now</a>
+                </div>
+            </div>
+            <div class="comment-section" id="contact">
+                <h3>Share Your Thoughts</h3>
+                <form class="comment-form" action="https://formspree.io/f/your-form-id" method="POST">
+                    <input type="text" name="name" placeholder="Your Name" required>
+                    <input type="email" name="email" placeholder="Your Email" required>
+                    <textarea name="comment" placeholder="Your Comment" rows="5" required></textarea>
+                    <input type="submit" value="Submit Comment">
+                </form>
+            </div>
         </main>
     </div>
     <footer>
