@@ -7,27 +7,43 @@
     <link rel="stylesheet" href="/assets/css/styles.css">
 </head>
 <body>
-    <header>
-        <h1>Leaf & Skyprint</h1>
-        <p>A Digital Archive of Solitary Walks in Nature</p>
-    </header>
-    <nav>
-        <a href="/">Home</a>
-        <a href="/about">About</a>
-        <a href="/archive">Archive</a>
-    </nav>
-    <main>
-        <h2>Welcome to Leaf & Skyprint</h2>
-        <p>This is my personal archive of observations, sketches, and reflections from solitary walks across diverse habitats—beaches, forests, wetlands, and beyond. Explore my latest entries below, capturing the traces of nature and my footsteps through the wild.</p>
-        <h3>Recent Walks</h3>
-        <ul>
-            {% for post in site.posts %}
-                <li><a href="{{ post.url }}">{{ post.title }}</a> - {{ post.date | date: "%B %d, %Y" }}</li>
-            {% endfor %}
-        </ul>
-    </main>
+    <div class="container">
+        <header>
+            <h1>Leaf & Skyprint</h1>
+            <p>A Digital Archive of Solitary Walks in Nature</p>
+        </header>
+        <div class="sidebar">
+            <nav>
+                <a href="/">Home</a>
+                <a href="/archive">Archive</a>
+                <a href="/about">About</a>
+            </nav>
+            <h3>Recent Walks</h3>
+            <ul>
+                {% for post in site.posts limit:3 %}
+                    <li><a href="{{ post.url }}">{{ post.title }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+        <main>
+            <h2>Welcome to Leaf & Skyprint</h2>
+            <p>Discover my solitary walks through beaches, forests, wetlands, and more. Each post captures observations, sketches, and reflections from nature’s diverse habitats. Share your thoughts in the comments below each post!</p>
+            <h3>Latest Observations</h3>
+            <div class="post-grid">
+                {% for post in site.posts limit:4 %}
+                    <article class="post-card">
+                        <h4><a href="{{ post.url }}">{{ post.title }}</a></h4>
+                        <p class="date">{{ post.date | date: "%B %d, %Y" }}</p>
+                        <p>{{ post.excerpt | strip_html | truncate: 100 }}</p>
+                        <a href="{{ post.url }}" class="read-more">Read More</a>
+                    </article>
+                {% endfor %}
+            </div>
+            <a href="/archive" class="archive-link">Explore All Walks</a>
+        </main>
+    </div>
     <footer>
-        <p>&copy; 2025 Leaf & Skyprint. All rights reserved.</p>
+        <p>© 2025 Leaf & Skyprint. All rights reserved.</p>
     </footer>
 </body>
 </html>
