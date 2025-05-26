@@ -7,28 +7,38 @@
     <link rel="stylesheet" href="/assets/css/styles.css">
 </head>
 <body>
-    <header>
-        <h1>Leaf & Skyprint</h1>
-        <p>Archive of Solitary Walks</p>
-    </header>
-    <nav>
-        <a href="/">Home</a>
-        <a href="/archive">Archive</a>
-        <a href="/about">About</a>
-    </nav>
-    <main>
-        <h2>All Walks</h2>
-        <div class="post-list">
-            {% for post in site.posts %}
-                <article class="post-preview">
-                    <h4><a href="{{ post.url }}">{{ post.title }}</a></h4>
-                    <p class="date">{{ post.date | date: "%B %d, %Y" }}</p>
-                    <p>{{ post.excerpt | strip_html | truncate: 150 }}</p>
-                    <a href="{{ post.url }}">Read More</a>
-                </article>
-            {% endfor %}
+    <div class="container">
+        <header>
+            <h1>Leaf & Skyprint</h1>
+            <p>Archive of Solitary Walks</p>
+        </header>
+        <div class="sidebar">
+            <nav>
+                <a href="/">Home</a>
+                <a href="/archive">Archive</a>
+                <a href="/about">About</a>
+            </nav>
+            <h3>Recent Walks</h3>
+            <ul>
+                {% for post in site.posts limit:3 %}
+                    <li><a href="{{ post.url }}">{{ post.title }}</a></li>
+                {% endfor %}
+            </ul>
         </div>
-    </main>
+        <main>
+            <h2>All Walks</h2>
+            <div class="post-grid">
+                {% for post in site.posts %}
+                    <article class="post-card">
+                        <h4><a href="{{ post.url }}">{{ post.title }}</a></h4>
+                        <p class="date">{{ post.date | date: "%B %d, %Y" }}</p>
+                        <p>{{ post.excerpt | strip_html | truncate: 100 }}</p>
+                        <a href="{{ post.url }}" class="read-more">Read More</a>
+                    </article>
+                {% endfor %}
+            </div>
+        </main>
+    </div>
     <footer>
         <p>© 2025 Leaf & Skyprint. All rights reserved.</p>
     </footer>
