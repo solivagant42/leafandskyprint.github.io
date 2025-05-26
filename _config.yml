@@ -1,6 +1,5 @@
 
-
-name: Leaf & Skyprint
+  name: Leaf & Skyprint
 markdown: kramdown
 theme: minima
 title: Leaf & Skyprint
@@ -12,11 +11,5 @@ collections:
   posts:
     output: true
     permalink: /archive/:year/:month/:day/:title
-giscus:
-  repo: "username/username.github.io"
-  repo-id: "your-repo-id"
-  category: "Announcements"
-  category-id: "your-category-id"
-  mapping: "pathname"
-  reactions-enabled: "1"
-  theme: "light"
+hyvor_talk:
+  website_id: "your-hyvor-website-id"
