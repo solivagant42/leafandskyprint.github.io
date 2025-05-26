@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leaf & Skyprint</title>
+    <link rel="stylesheet" href="/assets/css/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Leaf & Skyprint</h1>
+        <p>A Digital Archive of Solitary Walks in Nature</p>
+    </header>
+    <nav>
+        <a href="/">Home</a>
+        <a href="/about">About</a>
+        <a href="/archive">Archive</a>
+    </nav>
+    <main>
+        <h2>Welcome to Leaf & Skyprint</h2>
+        <p>This is my personal archive of observations, sketches, and reflections from solitary walks across diverse habitats—beaches, forests, wetlands, and beyond. Explore my latest entries below, capturing the traces of nature and my footsteps through the wild.</p>
+        <h3>Recent Walks</h3>
+        <ul>
+            {% for post in site.posts %}
+                <li><a href="{{ post.url }}">{{ post.title }}</a> - {{ post.date | date: "%B %d, %Y" }}</li>
+            {% endfor %}
+        </ul>
+    </main>
+    <footer>
+        <p>&copy; 2025 Leaf & Skyprint. All rights reserved.</p>
+    </footer>
+</body>
+</html>
