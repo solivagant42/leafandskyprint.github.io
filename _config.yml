@@ -1,15 +1,1 @@
 
-  name: Leaf & Skyprint
-markdown: kramdown
-theme: minima
-title: Leaf & Skyprint
-description: A digital archive of solitary walks through diverse natural habitats, capturing observations, sketches, and reflections.
-baseurl: ""
-url: "leafandskyprint.github.io"
-permalink: /archive/:year/:month/:day/:title
-collections:
-  posts:
-    output: true
-    permalink: /archive/:year/:month/:day/:title
-hyvor_talk:
-  website_id: "your-hyvor-website-id"
