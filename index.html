@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Numina</title>
-    <link rel="stylesheet" href="assets/css/styles.css">
+    <title>{{ site.title }}</title>
+    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/styles.css">
 </head>
 <body>
     <header>
         <div class="overlay">
-            <h1>Numina</h1>
-            <p>A Digital Archive </p>
+            <h1>{{ site.title }}</h1>
+            <p>{{ site.description }}</p>
         </div>
     </header>
     <nav>
@@ -25,75 +25,13 @@
         <div class="sidebar">
             <h3>Recent Walks</h3>
             <ul>
-                <li><a href="_posts/beach-walk.md">Post 1</a></li>
-                <li><a href="#post2">Post 2</a></li>
-                <li><a href="#post3">Post 3</a></li>
+                {% for post in site.posts limit:3 %}
+                <li><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></li>
+                {% endfor %}
             </ul>
         </div>
         <main>
-            <h2>Welcome to Leaf & Skyprint</h2>
-            <p>Discover my solitary walks through beaches, forests, wetlands, and more. Each post captures observations, sketches, and reflections from nature’s diverse habitats. Share your thoughts in the comments below!</p>
-            <h3>Latest Observations</h3>
-            <div class="post-grid">
-                <article class="post-card">
-                    <h4><a href="#post1">Post 1</a></h4>
-                    <p class="date">May 10, 2025</p>
-                    <p>Explored the rugged coastline, spotting gulls and collecting seashells under the morning mist.</p>
-                    <a href="_posts/beach-walk.md" class="read-more">Read More</a>
-                </article>
-                <article class="post-card">
-                    <h4><a href="#post2">Post 2</a></h4>
-                    <p class="date">April 15, 2025</p>
-                    <p>Documented native ferns and heard the call of a woodpecker deep in the forest.</p>
-                    <a href="#post2" class="read-more">Read More</a>
-                </article>
-                <article class="post-card">
-                    <h4><a href="#post3">Post 3</a></h4>
-                    <p class="date">March 20, 2025</p>
-                    <p>Sketched cattails and observed a heron in the serene wetlands at dusk.</p>
-                    <a href="#post3" class="read-more">Read More</a>
-                </article>
-                <article class="post-card">
-                    <h4><a href="#post4">Post 4</a></h4>
-                    <p class="date">February 5, 2025</p>
-                    <p>Hiked a mountain trail, noting wildflowers and distant eagle sightings.</p>
-                    <a href="#post4" class="read-more">Read More</a>
-                </article>
-            </div>
-            <a href="#archive" class="archive-link">Explore All Walks</a>
-            <h3>Nature Gallery</h3>
-            <div class="gallery">
-                <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" alt="Forest">
-                <img src="https://images.unsplash.com/photo-1518495973544-1b3a9e4e33b0?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" alt="Wildflower">
-                <img src="https://images.unsplash.com/photo-1475809913361-9a1161b2ab2e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" alt="Bird">
-            </div>
-            <h3>Occasions</h3>
-            <div class="occasions">
-                <div class="occasion-card">
-                    <h3>Birdwatching Walk</h3>
-                    <p>Join a guided birdwatching event in the local wetlands on June 10, 2025.</p>
-                    <a href="#contact" class="read-more">Learn More</a>
-                </div>
-                <div class="occasion-card">
-                    <h3>Plant Identification Workshop</h3>
-                    <p>Discover native flora in a hands-on workshop on July 15, 2025.</p>
-                    <a href="#contact" class="read-more">Learn More</a>
-                </div>
-                <div class="occasion-card">
-                    <h3>Seasonal Nature Blog</h3>
-                    <p>Read my latest posts on seasonal changes in the forest ecosystem.</p>
-                    <a href="#archive" class="read-more">Read Now</a>
-                </div>
-            </div>
-            <div class="comment-section" id="contact">
-                <h3>Share Your Thoughts</h3>
-                <form class="comment-form" action="https://formspree.io/f/your-form-id" method="POST">
-                    <input type="text" name="name" placeholder="Your Name" required>
-                    <input type="email" name="email" placeholder="Your Email" required>
-                    <textarea name="comment" placeholder="Your Comment" rows="5" required></textarea>
-                    <input type="submit" value="Submit Comment">
-                </form>
-            </div>
+            {{ content }}
         </main>
     </div>
     <footer>
