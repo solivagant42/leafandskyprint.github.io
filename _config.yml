@@ -1,13 +1,9 @@
-```yaml
-name: Leaf & Skyprint
-description: A Digital Archive of an amateur naturalist
-url: https://leafandskyprint.github.io
+
+
+title: Leaf & Skyprint
+description: A Digital Archive
+url: "https://leafandskyprint.github.io"
 baseurl: ""
-permalink: /:year/:month/:day/:title.html
-defaults:
-  - scope:
-      path: ""
-      type: posts
-    values:
-      layout: post
-```
+permalink: pretty
+paginate: 4
+paginate_path: /page/:num/
